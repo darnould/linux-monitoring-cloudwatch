@@ -1,0 +1,34 @@
+{
+	"ImportPath": "github.com/darnould/linux-monitoring-cloudwatch",
+	"GoVersion": "go1.3.3",
+	"Deps": [
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/aws",
+			"Rev": "24d1eef417392c6e30f730b268719a320eec3075"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/endpoints",
+			"Rev": "24d1eef417392c6e30f730b268719a320eec3075"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/protocol/query",
+			"Rev": "24d1eef417392c6e30f730b268719a320eec3075"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil",
+			"Rev": "24d1eef417392c6e30f730b268719a320eec3075"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/signer/v4",
+			"Rev": "24d1eef417392c6e30f730b268719a320eec3075"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/service/cloudwatch",
+			"Rev": "24d1eef417392c6e30f730b268719a320eec3075"
+		},
+		{
+			"ImportPath": "github.com/vaughan0/go-ini",
+			"Rev": "a98ad7ee00ec53921f08832bc06ecf7fd600e6a1"
+		}
+	]
+}
