@@ -27,6 +27,10 @@
 			"Rev": "24d1eef417392c6e30f730b268719a320eec3075"
 		},
 		{
+			"ImportPath": "github.com/guillermo/go.procmeminfo",
+			"Rev": "be4355a9fb0e5340ebee5b05aafe85948eaccd1b"
+		},
+		{
 			"ImportPath": "github.com/vaughan0/go-ini",
 			"Rev": "a98ad7ee00ec53921f08832bc06ecf7fd600e6a1"
 		}

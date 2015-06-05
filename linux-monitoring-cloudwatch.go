@@ -8,12 +8,10 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"regexp"
-	"strconv"
-	"strings"
 
 	"github.com/darnould/linux-monitoring-cloudwatch/Godeps/_workspace/src/github.com/awslabs/aws-sdk-go/aws"
 	"github.com/darnould/linux-monitoring-cloudwatch/Godeps/_workspace/src/github.com/awslabs/aws-sdk-go/service/cloudwatch"
+	"github.com/darnould/linux-monitoring-cloudwatch/Godeps/_workspace/src/github.com/guillermo/go.procmeminfo"
 )
 
 func main() {
@@ -72,36 +70,10 @@ func putMetric(name, unit string, value float64, namespace, region string) error
 }
 
 func memoryUsage() (percentUsed float64, err error) {
-	b, err := ioutil.ReadFile("/proc/meminfo")
-	if err != nil {
-		return 0, fmt.Errorf("can't read memory stats: %s", err)
-	}
+	meminfo := &procmeminfo.MemInfo{}
+	meminfo.Update()
 
-	l := strings.Split(string(b), "\n")[0:2]
-	totalLine, freeLine := l[0], l[1]
-
-	re := regexp.MustCompile(`\s+(\d+)\s+`)
-
-	t := re.FindStringSubmatch(totalLine)
-	if len(t[1:]) < 1 {
-		return 0, fmt.Errorf("can't parse total memory: %s", err)
-	}
-	total, err := strconv.ParseFloat(t[1], 32)
-	if err != nil {
-		return 0, fmt.Errorf("can't parse total memory: %s", err)
-	}
-
-	f := re.FindStringSubmatch(freeLine)
-	if len(f[1:]) < 1 {
-		return 0, fmt.Errorf("can't parse free memory: %s", err)
-	}
-	free, err := strconv.ParseFloat(f[1], 32)
-	if err != nil {
-		return 0, fmt.Errorf("can't parse free memory: %s", err)
-	}
-
-	used := total - free
-	percentUsed = used / total * 100
+	percentUsed = (float64(meminfo.Used()) / float64(meminfo.Total())) * 100
 
 	log.Print("Memory usage: ", percentUsed)
 
